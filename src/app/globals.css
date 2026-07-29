@@ -2,9 +2,6 @@
   --background: #ffffff;
   --foreground: #171717;
   --bg: #eef3f2;
-  --surface: #ffffff;
-  --surface-sunk: #f5f8f7;
-  --ink: hsl(185, 40%, 12%);
   --ink-muted: #5c7071;
   --border: #dce6e4;
   --brand: #157a26;
@@ -43,7 +40,7 @@ body {
 
 * {
   box-sizing: border-box;
-  padding: 0;
+  padding: center;
   margin: 0;
 }
 

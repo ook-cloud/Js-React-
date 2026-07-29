@@ -32,39 +32,39 @@ export default function Todo() {
   );
 }
 
-const handleAddTask = (err) => {
-  err.preventDefault();
-  if (!inputValue.trim()) return;
-  setTasks([
-    ...tasks,
-    { id: Date.now(), text: inputValue.trim(), completed: false },
-  ]);
-  setInputValue("");
-};
+// const handleAddTask = (err) => {
+//   err.preventDefault();
+//   if (!inputValue.trim()) return;
+//   setTasks([
+//     ...tasks,
+//     { id: Date.now(), text: inputValue.trim(), completed: false },
+//   ]);
+//   setInputValue("");
+// };
 
-const toggleTask = (id) => {
-  setTasks(
-    tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task,
-    ),
-  );
-};
+// const toggleTask = (id) => {
+//   setTasks(
+//     tasks.map((task) =>
+//       task.id === id ? { ...task, completed: !task.completed } : task,
+//     ),
+//   );
+// };
 
-const deleteTask = (id) => {
-  setTasks(tasks.filter((task) => task.id !== id));
-};
+// const deleteTask = (id) => {
+//   setTasks(tasks.filter((task) => task.id !== id));
+// };
 
-const clearCompleted = () => {
-  setTasks(tasks.filter((task) => !task.completed));
-};
+// const clearCompleted = () => {
+//   setTasks(tasks.filter((task) => !task.completed));
+// };
 
-const filteredTasks = tasks.filter((task) => {
-  if (filter === "Active") return !task.completed;
-  if (filter === "Completed") return task.completed;
-  return true;
-});
+// const filteredTasks = tasks.filter((task) => {
+//   if (filter === "Active") return !task.completed;
+//   if (filter === "Completed") return task.completed;
+//   return true;
+// });
 
-const completedCount = tasks.filter((t) => t.completed).length;
+// const completedCount = tasks.filter((t) => t.completed).length;
 
 //   return (
 //     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
