@@ -4,22 +4,50 @@ import { useState } from "react";
 
 export default function Todo() {
   const [state, setState] = useState("All");
+  const [todos, setTodos] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleInputChalenge = (event) => {
+    const Value = event.target.value;
+    setInputValue(value);
+  };
   const handleActiveButtonClick = () => {
-    SetState("Active");
+    setState("Active");
   };
   const handleCompleteButtonClick = () => {
-    SetState("Complete");
+    setState("Complete");
   };
   const handleAllButton = () => {
-    SetState("All");
+    setState("All");
   };
+  const handleAdButton = () => {
+    if (inputValue === "") {
+      setErrorMessage("Please enter todo");
+      return;
+    }
+    const neewTodo = {
+      id: Date.now(),
+      title: inputValue,
+      status: "Active",
+      isDone: false,
+    };
+    setTodos([...todos, newTodo]);
+    setInputValue("");
+    setErrorMessage("");
+  };
+
   return (
-    <div id="">
+    <div className="container">
       <input
-        onChange={(event) => {
-          setText(event.target.value);
-        }}
+        onChange={handleInputChange}
+        placeholder="Add new task"
+        value={inputValue}
       />
+      {errorMessage !== "" && (
+        <div style={{ color: "red" }}>{errorMessage}</div>
+      )}
+      <button onclick={handleAdButton}>Add</button>
       <div>
         <button onclick={handleAllButton}>All</button>
         <button onclick={handleActiveButtonClick}>Active</button>
