@@ -8,8 +8,8 @@ export default function Todo() {
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChalenge = (event) => {
-    const Value = event.target.value;
+  const handleInputChange = (event) => {
+    const value = event.target.value;
     setInputValue(value);
   };
   const handleActiveButtonClick = () => {
@@ -26,7 +26,7 @@ export default function Todo() {
       setErrorMessage("Please enter todo");
       return;
     }
-    const neewTodo = {
+    const newTodo = {
       id: Date.now(),
       title: inputValue,
       status: "Active",
@@ -35,6 +35,29 @@ export default function Todo() {
     setTodos([...todos, newTodo]);
     setInputValue("");
     setErrorMessage("");
+  };
+
+  const handleTodoStatusChange = (id) => {
+    const updatedTodo = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, status: "Complete", isDone: true };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(updatedTodo);
+  };
+
+  const activeTodos = todos.filter((todo) => {
+    return todo.status === "Active";
+  });
+
+  const completeTodos = todos.filter((todo) => {
+    return todo.status === "Complete";
+  });
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
@@ -53,9 +76,27 @@ export default function Todo() {
         <button onclick={handleActiveButtonClick}>Active</button>
         <button onclick={handleCompleteButtonClick}>Complete</button>
       </div>
-      {state === "All" && <div>State now is All</div>}
-      {state === "Active" && <div>State now is Active</div>}
-      {state === "Complete" && <div>State now is Complete</div>}
+      {state === "All" && (
+        <div>
+          {todos.map((todo) => {
+            return <div key={todo.id}>{todo.title}</div>;
+          })}
+        </div>
+      )}
+      {state === "Active" && (
+        <div>
+          {todos.map((todo) => {
+            return <button key={todo.id}>{todo.title}</button>;
+          })}
+        </div>
+      )}
+      {state === "Complete" && (
+        <div>
+          {todos.map((todo) => {
+            return <div key={todo.id}>{todo.title}</div>;
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -76,10 +117,6 @@ export default function Todo() {
 //       task.id === id ? { ...task, completed: !task.completed } : task,
 //     ),
 //   );
-// };
-
-// const deleteTask = (id) => {
-//   setTasks(tasks.filter((task) => task.id !== id));
 // };
 
 // const clearCompleted = () => {
