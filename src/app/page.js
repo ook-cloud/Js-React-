@@ -2,46 +2,46 @@
 
 import { useState } from "react";
 
-export default function Home() {
-  const [tasks, setTasks] = useState([
+export default function Todo() {
+  const [todos, setTodos] = useState([
     { id: 1, text: "Create PR", completed: true },
     { id: 2, text: "Design Todo app", completed: false },
   ]);
   const [inputText, setInputText] = useState("");
   const [activeTab, setActiveTab] = useState("All");
 
-  const handleAddTask = () => {
+  const handleAddTodo = () => {
     if (!inputText.trim()) return;
-    setTasks([...tasks, { id: Date.now(), text: inputText, completed: false }]);
+    setTodos([...todos, { id: Date.now(), text: inputText, completed: false }]);
     setInputText("");
   };
 
-  const toggleTask = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task,
+  const toggleTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
       ),
     );
   };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const clearCompleted = () => {
-    setTasks(tasks.filter((task) => !task.completed));
+    setTodos(todos.filter((todo) => !todo.completed));
   };
 
-  const filteredTasks = tasks.filter((task) => {
-    if (activeTab === "Active") return !task.completed;
-    if (activeTab === "Completed") return task.completed;
+  const filteredTodos = todos.filter((todo) => {
+    if (activeTab === "Active") return !todo.completed;
+    if (activeTab === "Completed") return todo.completed;
     return true;
   });
 
-  const completedCount = tasks.filter((t) => t.completed).length;
+  const completedCount = todos.filter((t) => t.completed).length;
 
   return (
-    <main className="hero">
+    <main className="Background">
       <div className="container">
         <div className="card">
           <h1 className="card-title">To-Do list</h1>
@@ -51,12 +51,12 @@ export default function Home() {
             <input
               type="text"
               className="hero-input"
-              placeholder="Add a new task..."
+              placeholder="Add a new todo..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleAddTask()}
+              onKeyDown={(e) => e.key === "Enter" && handleAddTodo()}
             />
-            <button className="btn-add" onClick={handleAddTask}>
+            <button className="btn-add" onClick={handleAddTodo}>
               Add
             </button>
           </div>
@@ -74,18 +74,18 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Task List Container */}
-          <div className="task-container">
-            {filteredTasks.map((task) => (
-              <div key={task.id} className="task-card">
-                <div className="task-content">
+          {/* List Container */}
+          <div className="todo-container">
+            {filteredTodos.map((todo) => (
+              <div key={todo.id} className="todo-card">
+                <div className="todo-content">
                   <div
                     className={`custom-checkbox ${
-                      task.completed ? "" : "unchecked"
+                      todo.completed ? "" : "unchecked"
                     }`}
-                    onClick={() => toggleTask(task.id)}
+                    onClick={() => toggleTodo(todo.id)}
                   >
-                    {task.completed && (
+                    {todo.completed && (
                       <svg
                         width="14"
                         height="11"
@@ -104,14 +104,14 @@ export default function Home() {
                     )}
                   </div>
                   <span
-                    className={`task-label ${task.completed ? "completed" : ""}`}
+                    className={`todo-label ${todo.completed ? "completed" : ""}`}
                   >
-                    {task.text}
+                    {todo.text}
                   </span>
                 </div>
                 <button
                   className="btn-delete"
-                  onClick={() => deleteTask(task.id)}
+                  onClick={() => deleteTodo(todo.id)}
                 >
                   Delete
                 </button>
@@ -122,7 +122,7 @@ export default function Home() {
           {/* Card Footer */}
           <div className="card-footer">
             <span>
-              {completedCount} of {tasks.length} tasks completed
+              {completedCount} of {todos.length} todos completed
             </span>
             <button className="btn-clear" onClick={clearCompleted}>
               Clear completed

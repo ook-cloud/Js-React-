@@ -8,7 +8,7 @@
 }
 
 /* Hero хэсэг - Дэлгэцийн төвд байрлуулах */
-.hero {
+.Background {
   min-height: 100vh;
   background-color: #f5f5f5;
   display: flex;
@@ -60,7 +60,7 @@
 }
 
 .btn-add {
-  background-color: #3b82f6;
+  background-color: #1f9b23;
   color: white;
   border: none;
   border-radius: 10px;
@@ -94,19 +94,19 @@
 }
 
 .tab-item.active {
-  background-color: #3b82f6;
+  background-color: #1f9b23;
   color: white;
 }
 
 /* Таскийн жагсаалт болон карт */
-.task-container {
+.todo-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 24px;
 }
 
-.task-card {
+.todo-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -115,7 +115,7 @@
   border-radius: 12px;
 }
 
-.task-content {
+.todo-content {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -125,7 +125,7 @@
 .custom-checkbox {
   width: 24px;
   height: 24px;
-  background-color: #3b82f6;
+  background-color: #2f2187;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -138,13 +138,13 @@
   border: 2px solid #cbd5e1;
 }
 
-.task-label {
+.todo-label {
   font-size: 16px;
   color: #0f172a;
   font-weight: 500;
 }
 
-.task-label.completed {
+.todo-label.completed {
   text-decoration: line-through;
 }
 
