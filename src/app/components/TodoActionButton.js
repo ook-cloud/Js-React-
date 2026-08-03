@@ -1,7 +1,7 @@
 export const TodoActionButton = (props) => {
   return (
     <button
-      disabled={props.disabled || false}
+      disabled={props.disabled}
       onClick={props.onClick}
       className={props.className}
     >
